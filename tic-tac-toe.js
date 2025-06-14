@@ -68,7 +68,7 @@ function checkWinner(b){
   ];
   for (let line of wins) {
     var [a, b1, c] = line;
-    if (b[a] && b[a] === b[b1] || b[a] === b[c]) {
+    if (b[a] && b[a] === b[b1] && b[a] === b[c]) {
       return { winner: b[a], line };
     }
   }
