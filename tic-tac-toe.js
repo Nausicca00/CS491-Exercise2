@@ -28,6 +28,36 @@ function indexToId(index) {
   ][index];
 }
 
+function computerTurn(count = 1) {
+  for (let i = 0; i < count; i++) {
+    if (gameOver) return;
+
+    var move = getBestMove(board);
+    if (move == null) return;
+
+    board[move] = "O";
+    var id = indexToId(move);
+    var btn = document.getElementById(id);
+    btn.value = "O";
+    btn.disabled = true;
+
+    var result = checkWinner(board);
+    if (result.winner) {
+      highlightWin(result.line);
+      gameOver = true;
+      return;
+    }
+  }
+}
+
+function getBestMove(b){
+
+}
+
+function checkWinner(b){
+  
+}
+
 //Game Presentation Logic
 function toggleBtn(){
   var btn = document.getElementById("btn");
