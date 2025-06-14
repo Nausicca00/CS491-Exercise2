@@ -28,6 +28,7 @@ function indexToId(index) {
   ][index];
 }
 
+//Chooses computers move and then checks if there's a winner
 function computerTurn(count = 1) {
   for (let i = 0; i < count; i++) {
     if (gameOver) return;
@@ -50,12 +51,15 @@ function computerTurn(count = 1) {
   }
 }
 
+//Figures out the best move for the computer based on strategy
 function getBestMove(b){
-
+  var empty = b.map((v, i) => v === "" ? i : null).filter(i => i !== null);
+  var preferred = [4, 0, 2, 6, 8, 1, 3, 5, 7];
+  return preferred.find(i => empty.includes(i)) ?? null;
 }
 
 function checkWinner(b){
-  
+
 }
 
 //Game Presentation Logic
@@ -96,6 +100,7 @@ function toggleBtn(){
   }
 }
 
+//Players move and then checks winner
 function makeX(num){
   if (gameOver) return;
 
