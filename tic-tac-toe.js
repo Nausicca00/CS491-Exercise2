@@ -58,8 +58,21 @@ function getBestMove(b){
   return preferred.find(i => empty.includes(i)) ?? null;
 }
 
+//Checks if someone has won
+//@returns {{winner: string|null, line: number[]|null}}
 function checkWinner(b){
-
+  var wins = [
+    [0,1,2],[3,4,5],[6,7,8], // rows
+    [0,3,6],[1,4,7],[2,5,8], // cols
+    [0,4,8],[2,4,6]          // diags
+  ];
+  for (let line of wins) {
+    var [a, b1, c] = line;
+    if (b[a] && b[a] === b[b1] || b[a] === b[c]) {
+      return { winner: b[a], line };
+    }
+  }
+  return { winner: null, line: null };
 }
 
 //Game Presentation Logic
