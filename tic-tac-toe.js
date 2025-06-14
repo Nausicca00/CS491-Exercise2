@@ -4,6 +4,11 @@ Author: Kaylyn Duncan
 */
 
 //Game Playing Logic
+// === GAME STATE ===
+var board = Array(9).fill("");
+var playerTurnCount = 0;
+var computerStarted = false;
+var gameOver = false;
 
 //Converts button ID to board index.
 function idToIndex(id) {
@@ -53,9 +58,36 @@ function toggleBtn(){
 }
 
 function makeX(num){
-  var btn = document.getElementById(num);
-  var start = document.getElementById("btn");
+  if (gameOver) return;
+
+  var idx = idToIndex(id);
+  if (board[idx] !== "") return;
+
+  var toggle = document.getElementById("btn");
+  if (toggle.value === "Start") {
+    toggle.value = "Clear";
+  }
+
+  board[idx] = "X";
+  var btn = document.getElementById(id);
   btn.value = "X";
   btn.disabled = true;
-  start.value = "Clear";
+
+  playerTurnCount++;
+
+  var result = checkWinner(board);
+  if (result.winner) {
+    highlightWin(result.line);
+    gameOver = true;
+    return;
+  }
+
+  if (!computerStarted && playerTurnCount === 2) {
+    // let's player make two moves
+    computerTurn(1);
+    computerStarted = true;
+  } else if (computerStarted && !gameOver) {
+    // let's player make one move
+    computerTurn(1);
+  }
 }
