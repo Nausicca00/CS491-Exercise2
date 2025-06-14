@@ -139,3 +139,10 @@ function makeX(num){
     computerTurn(1);
   }
 }
+
+function highlightWin(line) {
+  line.forEach(i => {
+    var id = indexToId(i);
+    document.getElementById(id).style.color = "red";
+  });
+}
