@@ -19,6 +19,15 @@ function idToIndex(id) {
   }[id];
 }
 
+//Converts board index to button ID.
+function indexToId(index) {
+  return [
+    "one", "two", "three",
+    "four", "five", "six",
+    "seven", "eight", "nine"
+  ][index];
+}
+
 //Game Presentation Logic
 function toggleBtn(){
   var btn = document.getElementById("btn");
