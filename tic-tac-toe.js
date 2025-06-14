@@ -78,38 +78,29 @@ function checkWinner(b){
 //Game Presentation Logic
 function toggleBtn(){
   var btn = document.getElementById("btn");
-  var one = document.getElementById("one");
-  var two = document.getElementById("two");
-  var three = document.getElementById("three");
-  var four = document.getElementById("four");
-  var five = document.getElementById("five");
-  var six = document.getElementById("six");
-  var seven = document.getElementById("seven");
-  var eight = document.getElementById("eight");
-  var nine = document.getElementById("nine");
-  if(btn.value == "Clear"){
+  if (btn.value === "Clear") {
+    // reset all
+    board = Array(9).fill("");
+    playerTurnCount = 0;
+    computerStarted = false;
+    gameOver = false;
     btn.value = "Start";
-    one.value = "";
-    one.disabled = false;
-    two.value = "";
-    two.disabled = false;
-    three.value = "";
-    three.disabled = false;
-    four.value = "";
-    four.disabled = false;
-    five.value = "";
-    five.disabled = false;
-    six.value = "";
-    six.disabled = false;
-    seven.value = "";
-    seven.disabled = false;
-    eight.value = "";
-    eight.disabled = false;
-    nine.value = "";
-    nine.disabled = false;
-  }
-  else {
-    
+
+    for (let i = 0; i < 9; i++) {
+      var id = indexToId(i);
+      var el = document.getElementById(id);
+      el.value = "";
+      el.disabled = false;
+      el.style.color = "black";
+    }
+  } else {
+    // game hasn't started yet
+    var allEmpty = board.every(v => v === "");
+    if (allEmpty) {
+      computerStarted = true;
+      computerTurn(2);
+      btn.value = "Clear";
+    }
   }
 }
 
