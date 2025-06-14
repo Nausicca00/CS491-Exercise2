@@ -5,6 +5,14 @@ Author: Kaylyn Duncan
 
 //Game Playing Logic
 
+//Converts button ID to board index.
+function idToIndex(id) {
+  return {
+    one: 0, two: 1, three: 2,
+    four: 3, five: 4, six: 5,
+    seven: 6, eight: 7, nine: 8
+  }[id];
+}
 
 //Game Presentation Logic
 function toggleBtn(){
