@@ -146,3 +146,5 @@ function highlightWin(line) {
     document.getElementById(id).style.color = "red";
   });
 }
+
+//Hello there!
