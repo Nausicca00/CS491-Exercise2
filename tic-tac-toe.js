@@ -105,7 +105,7 @@ function toggleBtn(){
 }
 
 //Players move and then checks winner
-function makeX(num){
+function makeX(id){
   if (gameOver) return;
 
   var idx = idToIndex(id);
